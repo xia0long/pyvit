@@ -1,7 +1,9 @@
 import sys
+import time
+
 from pyvit.hw.logplayer import LogPlayer
 from pyvit.proto.uds import *
-
+from pyvit.dispatch import Dispatcher
 
 def read_file(filename, req_arb_id, resp_arb_id, resp_timeout = 0.5):
     lp = LogPlayer(filename, realtime=False)
