@@ -86,6 +86,10 @@ class Dispatcher:
         if not self.is_running:
             raise Exception('dispatcher not running')
         self._tx_queue.put(data)
+        # put data to rx_queues
+        if data is not None:
+            for rx_queue in self._rx_queues:
+                rx_queue.put_nowait(data)
 
     def _send_loop(self):
         while True:
